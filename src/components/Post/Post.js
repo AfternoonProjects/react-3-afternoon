@@ -60,6 +60,12 @@ export default class Post extends Component {
       // const date = this.props.date
     const { text, date } = this.props;
 
+    //Destructuring Portion
+      // const deletePostFn = this.props.deletePostFn
+      // const updatePostFn = this.props.updatePostFn
+      // const id = this.props.id
+    const { deletePostFn, updatePostFn, id } = this.props;
+
     return (
       // Main body of post
       <section className="Post__parent" onClick={ this.hideMasterMenu }>
@@ -71,7 +77,7 @@ export default class Post extends Component {
           {/* Drop-down menu. Remember that the "showMasterMenu" variable has been destructured off of this.state */}
           <div className="Post__master-menu" style={ { display: showMasterMenu ? 'flex' : 'none' } }>
             <span onClick={ this.showEdit }>Edit</span>
-            <span>Delete</span>
+            <span onClick={ () => deletePostFn(id) }>Delete</span>
           </div>
         </div>
 
@@ -103,7 +109,7 @@ export default class Post extends Component {
               <Edit text={ text }
                     id={ this.props.id}
                     hideEdit = { this.hideEdit}
-                    updatePostFn = { this.props.updatePostFn } 
+                    updatePostFn = { this.updatePostFn } 
               />
             :
               <span className="Post__text"> {text} </span>

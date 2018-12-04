@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 
+//Import Header into the component.
+import Header from './Header/Header';
+
+//Import Componse into the component.
+import Compose from './Compose/Compose';
+
+//Import Post into the component
+import Post from './Post/Post';
+
+// Import axios into the component.
+import axios from 'axios';
+
 import './App.css';
 
-import Header from './Header/Header';
-import Compose from './Compose/Compose';
 
 class App extends Component {
   constructor() {
@@ -18,8 +28,12 @@ class App extends Component {
     this.createPost = this.createPost.bind( this );
   }
   
-  componentDidMount() {
 
+  // Now that we have axios imported, we can go into the componentDidMount method and make a GET request to the API. 
+  componentDidMount() {
+    axios.get('https://practiceapi.devmountain.com/api/posts').then(results => {
+      this.setState( {posts: results.data } );
+    });
   }
 
   updatePost() {
@@ -44,6 +58,12 @@ class App extends Component {
         <section className="App__content">
 
           <Compose />
+
+          {
+            posts.map( post => (
+              <Post key={ post.id } />
+            ))
+          }
           
         </section>
       </div>
@@ -52,3 +72,7 @@ class App extends Component {
 }
 
 export default App;
+
+// Notes:
+
+// Remember when using a map in the render method, the element needs a unique key property. In this case, we can use the id of the post

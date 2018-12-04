@@ -36,8 +36,12 @@ class App extends Component {
     });
   }
 
-  updatePost() {
-  
+  // Because the id and text of the post will be different every time the method is called we should use an id and text parameter for the method.
+  // We can then use these parameters to construct our axios request and use the returned data to update posts on state. 
+  updatePost( id, text ) {
+    axios.post(`https://practiceapi.devmountain.com/api/posts?id=${id}`, {text}).then(results => {
+      this.setState({posts: results.data});
+    });
   }
 
   deletePost() {
@@ -68,6 +72,8 @@ class App extends Component {
               { post.id }
               text = { post.text } 
               date = { post.date }
+              id = { post.id}
+              updatePostFn = { this.updatePost}
               />
 
             ))

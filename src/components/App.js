@@ -48,6 +48,8 @@ class App extends Component {
 
   }
 
+  //  In the render method, we'll need to update the map to include two new props on the Post component.
+
   render() {
     const { posts } = this.state;
 
@@ -61,7 +63,13 @@ class App extends Component {
 
           {
             posts.map( post => (
-              <Post key={ post.id } />
+
+              <Post key=
+              { post.id }
+              text = { post.text } 
+              date = { post.date }
+              />
+
             ))
           }
           

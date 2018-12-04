@@ -55,6 +55,11 @@ export default class Post extends Component {
       // const showMasterMenu = this.state.showMasterMenu
     const { editing, showMasterMenu } = this.state;
 
+    // Destructuring Portion
+      // const text = this.props.text
+      // const date = this.props.date
+    const { text, date } = this.props;
+
     return (
       // Main body of post
       <section className="Post__parent" onClick={ this.hideMasterMenu }>
@@ -79,7 +84,7 @@ export default class Post extends Component {
           <span className="Post__name">DevMountain</span>
           <span className="Post__handle">@DevMountain</span>
 
-          <span className="Post__date">- POST DATE GOES HERE</span>
+          <span className="Post__date">- {date} </span>
         </div>
 
         {/* This is where the text goes. Notice the turnary statement. The turnary statement decides to display either the text OR the editor view
@@ -98,7 +103,7 @@ export default class Post extends Component {
               <Edit text=""
                     hideEdit={ this.hideEdit } />
             :
-              <span className="Post__text">POST TEXT GOES HERE</span>
+              <span className="Post__text"> {text} </span>
           }
         </div>
 
